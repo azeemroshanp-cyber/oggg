@@ -1,0 +1,85 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: infyora-quote-api
+  labels:
+    app: infyora-quote-api
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: infyora-quote-api
+  labels:
+    app: infyora-quote-api
+spec:
+  source:
+    type: Git
+    git:
+      uri: "https://github.com/shabinshareefa5018/infyora-quote-api.git"
+    contextDir: "/"     # Dockerfile is in root
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "infyora-quote-api:latest"
+  triggers:
+    - type: GitHub
+    - type: ConfigChange
+    - type: ImageChange
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infyora-quote-api
+  labels:
+    app: infyora-quote-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: infyora-quote-api
+  template:
+    metadata:
+      labels:
+        app: infyora-quote-api
+    spec:
+      containers:
+        - name: infyora-quote-api
+          image: image-registry.openshift-image-registry.svc:5000/azeemroshan111-dev/infyora-quote-api:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FLASK_ENV
+              value: "production"
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: infyora-quote-api-svc
+  labels:
+    app: infyora-quote-api
+spec:
+  selector:
+    app: infyora-quote-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: infyora-quote-api-route
+spec:
+  to:
+    kind: Service
+    name: infyora-quote-api-svc
+  port:
+    targetPort: 80
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
