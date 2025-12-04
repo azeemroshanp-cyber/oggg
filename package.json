@@ -1,0 +1,12 @@
+{
+  "name": "quote-generator",
+  "version": "1.0.0",
+  "description": "Infyora Tech Quote Generator for IPSR DevOps Hackathon",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Docker container will serve via nginx'"
+  },
+  "keywords": ["devops", "openshift", "cloud", "hackathon"],
+  "author": "Infyora Tech",
+  "license": "MIT"
+}
