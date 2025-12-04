@@ -50,7 +50,7 @@ spec:
         - name: infyora-quote-api
           image: image-registry.openshift-image-registry.svc:5000/azeemroshan111-dev/infyora-quote-api:latest
           ports:
-            - containerPort: 5000
+            - containerPort: 8080
           env:
             - name: FLASK_ENV
               value: "production"
@@ -68,7 +68,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5000
+      targetPort: 8080
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
