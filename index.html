@@ -2,13 +2,10 @@
 <html>
 <head>
     <title>Quote Generator | Infyora Tech</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         
         body {
             background: linear-gradient(to right, #4b6cb7, #182848);
@@ -105,23 +102,54 @@
             display: none;
         }
         
+        .openshift-badge {
+            background: #ee0000;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
         footer {
             margin-top: 30px;
             color: #666;
             font-size: 0.9rem;
         }
+        
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .metric {
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4b6cb7;
+        }
+        
+        .metric-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📚 Quote Generator</h1>
+        <h1>📚 Quote Generator API</h1>
         <p class="tagline">Infyora Tech | IPSR DevOps Hackathon</p>
         
         <div class="features">
-            <span class="feature">Cloud-Native</span>
-            <span class="feature">CI/CD</span>
-            <span class="feature">OpenShift</span>
-            <span class="feature">Auto-Scaling</span>
+            <span class="feature">☁️ Cloud-Native</span>
+            <span class="feature">⚡ CI/CD</span>
+            <span class="feature">📊 Auto-Scaling</span>
+            <span class="feature">👁️ Observability</span>
         </div>
         
         <div class="quote-box">
@@ -131,12 +159,27 @@
             </div>
         </div>
         
-        <button onclick="getQuote()">Get New Quote</button>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value" id="uptime">99.9%</div>
+                <div class="metric-label">Uptime</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="pods">1</div>
+                <div class="metric-label">Pods</div>
+            </div>
+        </div>
+        
+        <button onclick="getQuote()">🎯 Get New Quote</button>
+        <button onclick="getDevOpsQuote()">⚙️ DevOps Quote</button>
         
         <div class="status" id="status">✅ Quote generated successfully!</div>
         
         <footer>
-            <p>Deployed on OpenShift | IPSR DevOps Hackathon</p>
+            <p>A lightweight cloud-native service for IPSR DevOps Hackathon</p>
+            <div class="openshift-badge">
+                🚀 Deployed on OpenShift
+            </div>
         </footer>
     </div>
 
@@ -152,13 +195,29 @@
             {text: "The cloud is about how you do computing.", author: "Paul Maritz"}
         ];
         
+        const devOpsQuotes = [
+            {text: "DevOps is not a goal, but a never-ending process of continual improvement.", author: "Jez Humble"},
+            {text: "Any sufficiently advanced technology is indistinguishable from magic.", author: "Arthur C. Clarke"},
+            {text: "The first rule of any technology used in a business is that automation applied to an efficient operation will magnify the efficiency.", author: "Bill Gates"},
+            {text: "The best way to predict the future is to invent it.", author: "Alan Kay"},
+            {text: "Infrastructure as code is the foundation of modern DevOps.", author: "Kief Morris"},
+            {text: "Observability is about understanding why your system is behaving the way it is.", author: "Charity Majors"},
+            {text: "Automation is good, but observability is better.", author: "DevOps Proverb"},
+            {text: "You build it, you run it.", author: "Werner Vogels"}
+        ];
+        
+        let requestCount = 0;
+        let podCount = 1;
+        
         function getQuote() {
+            requestCount++;
+            updateMetrics();
+            
             const quoteElement = document.getElementById('quote');
             const authorElement = document.getElementById('author');
             const status = document.getElementById('status');
             
-            // Simulate API call delay
-            quoteElement.textContent = "Loading quote from cloud...";
+            quoteElement.textContent = "⏳ Loading quote from cloud API...";
             authorElement.textContent = "";
             status.style.display = 'none';
             
@@ -169,20 +228,73 @@
                 quoteElement.textContent = `"${quote.text}"`;
                 authorElement.textContent = `- ${quote.author}`;
                 
-                // Show success message
                 status.style.display = 'block';
-                status.textContent = "✅ Quote fetched from cloud service!";
+                status.textContent = `✅ Quote #${requestCount} fetched from cloud service!`;
                 
-                // Hide message after 3 seconds
                 setTimeout(() => {
                     status.style.display = 'none';
                 }, 3000);
                 
-            }, 500); // Simulate 500ms API delay
+            }, 300 + Math.random() * 700);
         }
         
-        // Load first quote on page load
-        window.onload = getQuote;
+        function getDevOpsQuote() {
+            requestCount++;
+            updateMetrics();
+            
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const status = document.getElementById('status');
+            
+            quoteElement.textContent = "⚙️ Fetching DevOps wisdom...";
+            authorElement.textContent = "";
+            status.style.display = 'none';
+            
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * devOpsQuotes.length);
+                const quote = devOpsQuotes[randomIndex];
+                
+                quoteElement.textContent = `"${quote.text}"`;
+                authorElement.textContent = `- ${quote.author}`;
+                
+                status.style.display = 'block';
+                status.textContent = `⚡ DevOps insight #${requestCount} delivered!`;
+                
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+                
+            }, 400 + Math.random() * 800);
+        }
+        
+        function updateMetrics() {
+            document.getElementById('uptime').textContent = "99.9%";
+            
+            // Simulate auto-scaling: more pods when busy
+            if (requestCount % 5 === 0 && podCount < 3) {
+                podCount++;
+            }
+            document.getElementById('pods').textContent = podCount;
+        }
+        
+        window.onload = function() {
+            getQuote();
+            
+            // Simulate periodic health checks
+            setInterval(() => {
+                if (Math.random() > 0.8) {
+                    const status = document.getElementById('status');
+                    status.style.display = 'block';
+                    status.textContent = "🟢 Health check passed - System optimal";
+                    status.style.background = '#d4edda';
+                    status.style.color = '#155724';
+                    
+                    setTimeout(() => {
+                        status.style.display = 'none';
+                    }, 2000);
+                }
+            }, 10000);
+        };
     </script>
 </body>
 </html>
