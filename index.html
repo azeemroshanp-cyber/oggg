@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quote Generator | Infyora Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .quote-box {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #4b6cb7;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #quote {
+            font-size: 1.5rem;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        #author {
+            margin-top: 15px;
+            color: #4b6cb7;
+            font-weight: bold;
+        }
+        
+        button {
+            background: #4b6cb7;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #3a5999;
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .feature {
+            background: #e9ecef;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Quote Generator</h1>
+        <p class="tagline">Infyora Tech | IPSR DevOps Hackathon</p>
+        
+        <div class="features">
+            <span class="feature">Cloud-Native</span>
+            <span class="feature">CI/CD</span>
+            <span class="feature">OpenShift</span>
+            <span class="feature">Auto-Scaling</span>
+        </div>
+        
+        <div class="quote-box">
+            <div>
+                <p id="quote">Click the button to get inspired!</p>
+                <p id="author"></p>
+            </div>
+        </div>
+        
+        <button onclick="getQuote()">Get New Quote</button>
+        
+        <div class="status" id="status">✅ Quote generated successfully!</div>
+        
+        <footer>
+            <p>Deployed on OpenShift | IPSR DevOps Hackathon</p>
+        </footer>
+    </div>
+
+    <script>
+        const quotes = [
+            {text: "The only way to do great work is to love what you do.", author: "Steve Jobs"},
+            {text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs"},
+            {text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt"},
+            {text: "Strive not to be a success, but rather to be of value.", author: "Albert Einstein"},
+            {text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney"},
+            {text: "Cloud computing is the future of computing.", author: "Larry Ellison"},
+            {text: "DevOps is a never-ending process of improvement.", author: "Jez Humble"},
+            {text: "The cloud is about how you do computing.", author: "Paul Maritz"}
+        ];
+        
+        function getQuote() {
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            const status = document.getElementById('status');
+            
+            // Simulate API call delay
+            quoteElement.textContent = "Loading quote from cloud...";
+            authorElement.textContent = "";
+            status.style.display = 'none';
+            
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                const quote = quotes[randomIndex];
+                
+                quoteElement.textContent = `"${quote.text}"`;
+                authorElement.textContent = `- ${quote.author}`;
+                
+                // Show success message
+                status.style.display = 'block';
+                status.textContent = "✅ Quote fetched from cloud service!";
+                
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+                
+            }, 500); // Simulate 500ms API delay
+        }
+        
+        // Load first quote on page load
+        window.onload = getQuote;
+    </script>
+</body>
+</html>
