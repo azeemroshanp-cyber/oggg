@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Only | Infyora Tech</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .quote-display {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .quote-text {
+            font-size: 1.6rem;
+            color: #2c3e50;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .quote-author {
+            font-size: 1.2rem;
+            color: #3498db;
+            font-style: italic;
+        }
+        
+        .info-panel {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .info-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .view-only-notice {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #ffeaa7;
+        }
+        
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .quote-text {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Quote Generator API</h1>
+            <p class="tagline">Infyora Tech | IPSR DevOps Hackathon | View Only Mode</p>
+        </div>
+        
+        <div class="view-only-notice">
+            ⚠️ <strong>View Only Mode</strong> - This is a demonstration page for viewing purposes only.
+        </div>
+        
+        <div class="quote-display">
+            <div class="quote-text">
+                "Cloud computing is not only the future of computing, but the present and the entire past of computing."
+            </div>
+            <div class="quote-author">
+                — Larry Ellison
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">Service Uptime</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">2.4ms</div>
+                <div class="stat-label">Avg Response Time</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Running Pods</div>
+            </div>
+        </div>
+        
+        <div class="tech-badges">
+            <span class="badge">☁️ Cloud-Native</span>
+            <span class="badge">⚡ CI/CD Pipeline</span>
+            <span class="badge">📊 Auto-Scaling</span>
+            <span class="badge">👁️ Observability</span>
+            <span class="badge">🐳 Docker</span>
+            <span class="badge">🚀 OpenShift</span>
+        </div>
+        
+        <div class="info-panel">
+            <h3 style="margin-bottom: 15px; color: #2c3e50;">📋 Project Information</h3>
+            
+            <div class="info-item">
+                <strong>Project Name:</strong> Infyora Tech Quote Generator API
+            </div>
+            
+            <div class="info-item">
+                <strong>Purpose:</strong> IPSR DevOps Hackathon Submission
+            </div>
+            
+            <div class="info-item">
+                <strong>Description:</strong> A lightweight cloud-native service demonstrating modern DevOps practices including CI/CD, auto-scaling, and observability on OpenShift.
+            </div>
+            
+            <div class="info-item">
+                <strong>Features:</strong>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>RESTful API for quote generation</li>
+                    <li>Containerized with Docker</li>
+                    <li>Automated CI/CD pipeline</li>
+                    <li>Horizontal pod auto-scaling</li>
+                    <li>Monitoring and observability</li>
+                </ul>
+            </div>
+            
+            <div class="info-item">
+                <strong>Technology Stack:</strong> HTML5, CSS3, JavaScript, Docker, OpenShift, Git
+            </div>
+            
+            <div class="info-item">
+                <strong>Deployment:</strong> OpenShift Container Platform
+            </div>
+        </div>
+        
+        <div class="quote-display" style="margin-top: 30px;">
+            <div class="quote-text">
+                "DevOps is not a goal, but a never-ending process of continual improvement. The best way to predict the future is to invent it."
+            </div>
+            <div class="quote-author">
+                — Jez Humble & Alan Kay
+            </div>
+        </div>
+        
+        <footer>
+            <p>📍 <strong>Deployment Status:</strong> Successfully deployed on OpenShift</p>
+            <p>🔗 <strong>API Endpoint:</strong> https://quote-api.infyora.com/v1/quotes</p>
+            <p>📅 <strong>Created For:</strong> IPSR DevOps Hackathon 2024</p>
+            <p style="margin-top: 15px; font-style: italic;">
+                Note: This is a view-only demonstration page. All functionality is simulated for presentation purposes.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // No interactive functions - view only
+        console.log("View Only Mode Active - No interactive features enabled");
+    </script>
+</body>
+</html>
